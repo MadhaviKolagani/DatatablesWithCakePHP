@@ -1,0 +1,126 @@
+2014-08-27 13:57:15 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`books`.`books`, CONSTRAINT `FK_books_autor` FOREIGN KEY (`author_id`) REFERENCES `authors` (`id`))
+Request URL: /books/authors/delete/22
+Stack Trace:
+#0 C:\wamp\www\cakephp\lib\Cake\Model\Datasource\DboSource.php(458): PDOStatement->execute(Array)
+#1 C:\wamp\www\cakephp\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('DELETE `Author`...', Array)
+#2 C:\wamp\www\cakephp\lib\Cake\Model\Datasource\Database\Mysql.php(451): DboSource->execute('DELETE `Author`...')
+#3 C:\wamp\www\cakephp\lib\Cake\Model\Model.php(2592): Mysql->delete(Object(Author), Array)
+#4 C:\wamp\www\books\Controller\AuthorsController.php(98): Model->delete()
+#5 [internal function]: AuthorsController->delete('22')
+#6 C:\wamp\www\cakephp\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(AuthorsController), Array)
+#7 C:\wamp\www\cakephp\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#8 C:\wamp\www\cakephp\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(AuthorsController), Object(CakeRequest))
+#9 C:\wamp\www\books\webroot\index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-08-28 08:03:45 Error: [MissingComponentException] Component class DataTableComponent could not be found.
+Exception Attributes: array (
+  'class' => 'DataTableComponent',
+  'plugin' => false,
+)
+Request URL: /books/
+Stack Trace:
+#0 C:\wamp\www\cakephp\lib\Cake\Controller\ComponentCollection.php(53): ComponentCollection->load('DataTable', Array)
+#1 C:\wamp\www\cakephp\lib\Cake\Controller\Controller.php(643): ComponentCollection->init(Object(BooksController))
+#2 C:\wamp\www\cakephp\lib\Cake\Routing\Dispatcher.php(186): Controller->constructClasses()
+#3 C:\wamp\www\cakephp\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(BooksController), Object(CakeRequest))
+#4 C:\wamp\www\books\webroot\index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-08-28 08:03:47 Error: [MissingComponentException] Component class DataTableComponent could not be found.
+Exception Attributes: array (
+  'class' => 'DataTableComponent',
+  'plugin' => false,
+)
+Request URL: /books/
+Stack Trace:
+#0 C:\wamp\www\cakephp\lib\Cake\Controller\ComponentCollection.php(53): ComponentCollection->load('DataTable', Array)
+#1 C:\wamp\www\cakephp\lib\Cake\Controller\Controller.php(643): ComponentCollection->init(Object(BooksController))
+#2 C:\wamp\www\cakephp\lib\Cake\Routing\Dispatcher.php(186): Controller->constructClasses()
+#3 C:\wamp\www\cakephp\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(BooksController), Object(CakeRequest))
+#4 C:\wamp\www\books\webroot\index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-08-28 08:06:34 Error: [MissingActionException] Action AppController::webroot() could not be found.
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'webroot',
+)
+Request URL: /books/app/webroot/js/jquery-1.4.2.js
+Stack Trace:
+#0 C:\wamp\www\cakephp\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\cakephp\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(AppController), Object(CakeRequest))
+#2 C:\wamp\www\books\webroot\index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2014-08-28 08:06:35 Error: [MissingActionException] Action AppController::webroot() could not be found.
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'webroot',
+)
+Request URL: /books/app/webroot/datatables/js/jquery.dataTables.min.js
+Stack Trace:
+#0 C:\wamp\www\cakephp\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\cakephp\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(AppController), Object(CakeRequest))
+#2 C:\wamp\www\books\webroot\index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2014-08-28 08:09:55 Error: [MissingActionException] Action AppController::webroot() could not be found.
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'webroot',
+)
+Request URL: /books/app/webroot/datatables/js/jquery.dataTables.min.js
+Stack Trace:
+#0 C:\wamp\www\cakephp\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\cakephp\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(AppController), Object(CakeRequest))
+#2 C:\wamp\www\books\webroot\index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2014-08-28 08:09:57 Error: [MissingActionException] Action AppController::webroot() could not be found.
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'webroot',
+)
+Request URL: /books/app/webroot/js/jquery-1.4.2.js
+Stack Trace:
+#0 C:\wamp\www\cakephp\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\cakephp\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(AppController), Object(CakeRequest))
+#2 C:\wamp\www\books\webroot\index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2014-08-28 08:12:19 Error: [MissingControllerException] Controller class DiscountsController could not be found.
+Exception Attributes: array (
+  'class' => 'DiscountsController',
+  'plugin' => NULL,
+)
+Request URL: /books/discounts/index.json?_=1409213537898&sEcho=1&iColumns=6&sColumns=&iDisplayStart=0&iDisplayLength=10&mDataProp_0=Book.name&mDataProp_1=Author.name&mDataProp_2=Genre.name&mDataProp_3=null&mDataProp_4=null&mDataProp_5=null&sSearch=&bRegex=false&sSearch_0=&bRegex_0=false&bSearchable_0=true&sSearch_1=&bRegex_1=false&bSearchable_1=true&sSearch_2=&bRegex_2=false&bSearchable_2=true&sSearch_3=&bRegex_3=false&bSearchable_3=false&sSearch_4=&bRegex_4=false&bSearchable_4=false&sSearch_5=&bRegex_5=false&bSearchable_5=false&iSortCol_0=0&sSortDir_0=asc&iSortingCols=1&bSortable_0=true&bSortable_1=true&bSortable_2=true&bSortable_3=false&bSortable_4=false&bSortable_5=false
+Stack Trace:
+#0 C:\wamp\www\books\webroot\index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-08-28 08:12:43 Error: [MissingControllerException] Controller class DiscountsController could not be found.
+Exception Attributes: array (
+  'class' => 'DiscountsController',
+  'plugin' => NULL,
+)
+Request URL: /books/discounts/index.json?_=1409213562565&sEcho=1&iColumns=6&sColumns=&iDisplayStart=0&iDisplayLength=10&mDataProp_0=Book.name&mDataProp_1=Author.name&mDataProp_2=Genre.name&mDataProp_3=null&mDataProp_4=null&mDataProp_5=null&sSearch=&bRegex=false&sSearch_0=&bRegex_0=false&bSearchable_0=true&sSearch_1=&bRegex_1=false&bSearchable_1=true&sSearch_2=&bRegex_2=false&bSearchable_2=true&sSearch_3=&bRegex_3=false&bSearchable_3=false&sSearch_4=&bRegex_4=false&bSearchable_4=false&sSearch_5=&bRegex_5=false&bSearchable_5=false&iSortCol_0=0&sSortDir_0=asc&iSortingCols=1&bSortable_0=true&bSortable_1=true&bSortable_2=true&bSortable_3=false&bSortable_4=false&bSortable_5=false
+Stack Trace:
+#0 C:\wamp\www\books\webroot\index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-08-28 09:11:28 Error: [MissingBehaviorException] Behavior class LinkableBehavior could not be found.
+Exception Attributes: array (
+  'class' => 'LinkableBehavior',
+  'plugin' => false,
+)
+Request URL: /books/
+Stack Trace:
+#0 C:\wamp\www\cakephp\lib\Cake\Model\BehaviorCollection.php(66): BehaviorCollection->load('Linkable', Array)
+#1 C:\wamp\www\cakephp\lib\Cake\Model\Model.php(747): BehaviorCollection->init('Book', Array)
+#2 [internal function]: Model->__construct(Array)
+#3 C:\wamp\www\cakephp\lib\Cake\Utility\ClassRegistry.php(168): ReflectionClass->newInstance(Array)
+#4 C:\wamp\www\cakephp\lib\Cake\Controller\Controller.php(738): ClassRegistry::init(Array)
+#5 C:\wamp\www\cakephp\lib\Cake\Controller\Controller.php(367): Controller->loadModel('Book')
+#6 C:\wamp\www\cakephp\lib\Cake\Controller\Controller.php(405): Controller->__isset('Book')
+#7 C:\wamp\www\books\Controller\Component\DataTableComponent.php(46): Controller->__get('Book')
+#8 [internal function]: DataTableComponent->initialize(Object(BooksController))
+#9 C:\wamp\www\cakephp\lib\Cake\Utility\ObjectCollection.php(129): call_user_func_array(Array, Array)
+#10 [internal function]: ObjectCollection->trigger(Object(CakeEvent))
+#11 C:\wamp\www\cakephp\lib\Cake\Event\CakeEventManager.php(244): call_user_func(Array, Object(CakeEvent))
+#12 C:\wamp\www\cakephp\lib\Cake\Controller\Controller.php(674): CakeEventManager->dispatch(Object(CakeEvent))
+#13 C:\wamp\www\cakephp\lib\Cake\Routing\Dispatcher.php(187): Controller->startupProcess()
+#14 C:\wamp\www\cakephp\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(BooksController), Object(CakeRequest))
+#15 C:\wamp\www\books\webroot\index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#16 {main}
