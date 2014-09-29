@@ -46,23 +46,23 @@ class DataTableComponent extends Component{
         $this->model = $this->controller->{$modelName};
     }
     
-/**
- * returns dataTables compatible array - just json_encode the resulting aray
- * @param object $controller optional
- * @param object $model optional
- * @return array
- */
+	/**
+ 	 * returns dataTables compatible array - just json_encode the resulting aray
+ 	 * @param object $controller optional
+ 	 * @param object $model optional
+ 	 * @return array
+ 	 */
     public function getResponse($controller = null, $model=null){
         
-        /**
-         * it is no longer necessary to pass in a controller or model
-         * this is handled in the initialize method
-         * $controller is disregarded.
-         * $model is only necessary if you are using a model from a different controller such as if you are in 
-         * a CustomerController but your method is displaying data from an OrdersModel.
-         */
+	    /**
+	     * it is no longer necessary to pass in a controller or model
+	     * this is handled in the initialize method
+	     * $controller is disregarded.
+	     * $model is only necessary if you are using a model from a different controller such as if you are in 
+	     * a CustomerController but your method is displaying data from an OrdersModel.
+	     */
         
-        $this->setTimes('Pre','start','Preproccessing of conditions');
+		$this->setTimes('Pre','start','Preproccessing of conditions');
         
         if($model != null){  
             if(is_string($model)){
@@ -166,11 +166,11 @@ class DataTableComponent extends Component{
         return $response;
     }
     
-/**
- * returns sql order by string after converting dataTables GET request into Cake style order by
- * @param void
- * @return string
- */
+	/**
+	 * returns sql order by string after converting dataTables GET request into Cake style order by
+	 * @param void
+	 * @return string
+	 */
     private function getOrderByStatements(){
         
         if( !isset($this->controller->paginate['fields']) && !empty($this->controller->paginate['contain']) && empty($this->fields) ){
@@ -181,20 +181,17 @@ class DataTableComponent extends Component{
         
         $fields = !empty($this->fields) ? $this->fields : $this->controller->paginate['fields'];
         
-        // loop through sorting columbns in GET
-        //for ( $i=0 ; $i<intval( $this->controller->request->query['iSortingCols'] ) ; $i++ ){
-            // if column is found in paginate fields list then add to $orderBy
-            if( $this->mDataProp == true ){
-                $direction = $this->controller->request->query['sSortDir_0'] === 'asc' ? 'asc' : 'desc';
-                $mDataProp = $this->controller->request->query['iSortCol_0'];
-                $orderBy = $this->controller->request->query['mDataProp_'.$mDataProp].' '.$direction.', ';
-            }
-            else if( !empty($fields) && isset($this->controller->request->query['iSortCol_0']) ){
-                $direction = $this->controller->request->query['sSortDir_0'] === 'asc' ? 'asc' : 'desc';
-                $orderBy = $fields[ $this->controller->request->query['iSortCol_0'] ].' '.$direction.', ';
-            }
-        //}
-        
+        // if column is found in paginate fields list then add to $orderBy
+        if( $this->mDataProp == true ){
+            $direction = $this->controller->request->query['sSortDir_0'] === 'asc' ? 'asc' : 'desc';
+            $mDataProp = $this->controller->request->query['iSortCol_0'];
+            $orderBy = $this->controller->request->query['mDataProp_'.$mDataProp].' '.$direction.', ';
+        }
+        else if( !empty($fields) && isset($this->controller->request->query['iSortCol_0']) ){
+            $direction = $this->controller->request->query['sSortDir_0'] === 'asc' ? 'asc' : 'desc';
+            $orderBy = $fields[ $this->controller->request->query['iSortCol_0'] ].' '.$direction.', ';
+        }
+			        
         if(!empty($orderBy)){
             return substr($orderBy,0, -2);
         }
@@ -202,12 +199,12 @@ class DataTableComponent extends Component{
         return $orderBy;
     }
 
-/**
- * returns sql conditions array after converting dataTables GET request into Cake style conditions
- * will only search on fields with bSearchable set to true (which is the default value for bSearchable)
- * @param void
- * @return array
- */
+	/**
+	 * returns sql conditions array after converting dataTables GET request into Cake style conditions
+	 * will only search on fields with bSearchable set to true (which is the default value for bSearchable)
+	 * @param void
+	 * @return array
+	 */
     private function getWhereConditions(){
         
         if( $this->mDataProp == false && !isset($this->controller->paginate['fields']) && empty($this->fields) ){
@@ -215,7 +212,6 @@ class DataTableComponent extends Component{
         }
         
         $conditions = array();
-        
 
         if($this->mDataProp == true){
             for($i=0;$i<$this->controller->request->query['iColumns'];$i++){
@@ -273,12 +269,12 @@ class DataTableComponent extends Component{
         return $conditions;
     }
     
-/**
- * looks through the models validate array to determine to create conditions based on datatype, returns condition array. 
- * to enable this set $this->DataTable->conditionsByValidate = 1.
- * @param string $field
- * @return array
- */    
+	/**
+	 * looks through the models validate array to determine to create conditions based on datatype, returns condition array. 
+	 * to enable this set $this->DataTable->conditionsByValidate = 1.
+	 * @param string $field
+	 * @return array
+	 */    
     private function conditionByDataType($field){
         foreach($this->model->validate[$field] as $rule => $j){
             switch($rule){
@@ -292,13 +288,13 @@ class DataTableComponent extends Component{
         return $condition;
     }
     
-/**
- * finds data recursively and returns a flattened key => value pair array 
- * second parameter is not required and only used in callbacks to self
- * @param array $data
- * @param string $key
- * @return array
- */
+	/**
+	 * finds data recursively and returns a flattened key => value pair array 
+	 * second parameter is not required and only used in callbacks to self
+	 * @param array $data
+	 * @param string $key
+	 * @return array
+	 */
     private function getDataRecursively($data,$key=null){
         $fields = array();
 
@@ -342,13 +338,13 @@ class DataTableComponent extends Component{
         return $fields;
     }
     
-/**
- * setTimes method - adds to timer of settings[timed] = true
- * @param string $key
- * @param string $action (start or stop)
- * @param string $desc (optional)
- * @param string $line
- */    
+	/**
+	 * setTimes method - adds to timer of settings[timed] = true
+	 * @param string $key
+	 * @param string $action (start or stop)
+	 * @param string $desc (optional)
+	 * @param string $line
+	 */    
     private function setTimes($key,$action,$desc=''){
         if(isset($this->settings) && isset($this->settings['timer']) && $this->settings['timer'] == true){
             $this->times[$key][$action] = array(
@@ -359,10 +355,10 @@ class DataTableComponent extends Component{
         }
     }
     
-/**
- * getTimes method - returns an array of the components benchmarks
- * @return type
- */    
+	/**
+	 * getTimes method - returns an array of the components benchmarks
+	 * @return type
+	 */    
     public function getTimes(){
         $times = array();
         $componentStart = 0;
