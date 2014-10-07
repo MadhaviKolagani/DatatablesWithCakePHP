@@ -17,7 +17,7 @@ class BooksController extends AppController {
      * @var array
      */
     public $components = array('Paginator', 'Session', 'DataTable', 'RequestHandler');
-
+    var $helpers = array('Html', 'Form','Csv');
     /**
      * index method
      *
@@ -26,17 +26,7 @@ class BooksController extends AppController {
     public function index() {
         $conditions = array();
         $this->Book->recursive = 0;
-        /*$conditions[0] = "";*/
-       /* if (!empty($this->request->query)) {
-            if (!empty($this->request->query['iColumns'])) {
-                $conditions = array(
-                    "Book.name like '%".$this->request->query['sSearch_0']."%'",
-                    "Author.name like '%".$this->request->query['sSearch_1']."%'",
-                    "Genre.name like '%".$this->request->query['sSearch_2']."%'",
-                );
-            }
-        }*/
-        
+       
         if (!empty($this->request->query)) {
             if (!empty($this->request->query['iColumns'])) {
                 for ($i=0;$i<$this->request->query['iColumns'];$i++) {
@@ -69,6 +59,48 @@ class BooksController extends AppController {
         }
     }
 
+    public function export() {
+        $this->autoRender = false;
+        $conditions = array();
+
+    	$data = $this->request->data;
+    	$this->response->download("export.csv");
+    	
+    	$this->paginate = array(
+                'fields' => array('Book.id', 'Book.name', 'Book.author_id', 'Book.genre_id'),
+                'link' => array(
+                    'Author' => array(
+                        'fields' => array('id', 'name')
+                    ),
+                    'Genre' => array(
+                        'fields' => array('id', 'name')
+                    ),
+                ),
+                'order' => 'Book.Id ASC',
+                'conditions' => $conditions
+            );
+        $condition1 = "book.name like '%".$data['title']."%'";
+        $condition2 = "author.name like '%".$data['author']."%'";
+        $condition3 = "genre.name like '%".$data['genre']."%'";
+        array_push($conditions,$condition1);
+        array_push($conditions,$condition2);
+        array_push($conditions,$condition3);
+        
+     // $data = $this->Book->find('all',array('conditions'=>$conditions));
+        $data = $this->Book->find('all',array('conditions'=>$conditions));
+        $csv_file_name =  'csv/list_books.csv';
+        $h = @fopen($csv_file_name, 'w');
+        if (false !== $h) {
+            if (sizeof($data)) {
+                foreach ($data as $csv_data) {
+                    $csv_row = $csv_data['Book']['name'];
+                    fputcsv($h, $csv_row);
+                }
+            }  
+        }
+        fclose($h);
+        echo file_exists($csv_file_name) ? $csv_file_name : '';
+	}
     /**
      * view method
      *

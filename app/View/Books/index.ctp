@@ -1,22 +1,22 @@
-<script language="javascript" type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script language="javascript" type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 <script language="javascript" type="text/javascript" src="datatables_1.10.2/js/jquery.dataTables.min.js"></script>
 <div class="books index">
     <h2><?php echo __('Books'); ?></h2>
     <table id="listBooks" width="100%">
         <thead>
-           <!-- <tr>
-                <th width="30%">Title</th>
-                <th width="10%">Author</th>
-                <th width="10%">Genre</th>
-                <th class="Actions" width="5%">Actions</th>
-                <th width="5%"></th>
-                <th width="5%"></th>
-            </tr>-->
             <tr>
                 <th  class="secondrow" width="30%"></th>
                 <th  class="secondrow" width="10%"></th>
                 <th  class="secondrow" width="10%"></th>
                 <th  class="Actions" width="5%"></th>
+                <th width="5%"></th>
+                <th width="5%"></th>
+            </tr>
+            <tr>
+                <th width="30%">Title</th>
+                <th width="10%">Author</th>
+                <th width="10%">Genre</th>
+                <th class="Actions" width="5%">Actions</th>
                 <th width="5%"></th>
                 <th width="5%"></th>
             </tr>
@@ -43,6 +43,7 @@
         <li><?php echo $this->Html->link(__('New Author'), array('controller' => 'authors', 'action' => 'add')); ?> </li>
         <li><?php echo $this->Html->link(__('List Genres'), array('controller' => 'genres', 'action' => 'index')); ?> </li>
         <li><?php echo $this->Html->link(__('New Genre'), array('controller' => 'genres', 'action' => 'add')); ?> </li>
+        <li><button class="btn btn-success export" >Export to CSV</button></li>
     </ul>
 </div>
 <style type="text/css">
@@ -52,9 +53,13 @@
 </style>
 <script language="javascript" type="text/javascript">
     $(document).ready(function() {
-        $('#listBooks thead th').each( function () {
-            var title = $('#listBooks thead th').eq( $(this).index() ).text();
-            $(this).html( '<input type="text" placeholder="Search '+title+'" />');
+        $('#listBooks thead tr:first th').each( function () {
+            var col = $(this).parent().children().index($(this));
+            if (col < 3) {
+                var title = $('#listBooks thead tr:last th').eq( $(this).index() ).text();
+               /* $(this).html( '<input type="text" placeholder="Search '+title+'" />');*/
+                 $(this).html( '<input type="text" id="search'+title+'" placeholder="Search '+title+'" />');
+            }
         } );
         var table = $('#listBooks').DataTable({
             "bSortCellsTop": true,
@@ -75,21 +80,7 @@
                 nRow.find('td:eq(4)', nRow).html('<a href="<?php echo Router::url('/')?>Books/edit/' + aData.Book.id + '">Edit</a>');
                 nRow.find('td:eq(5)', nRow).html('<a href="<?php echo Router::url('/')?>Books/delete/' + aData.Book.id + '">Delete</a>');
             }
-        });
-        
-        /*.columnFilter({
-            sPlaceHolder: "head:after",
-			aoColumns: [{ type: "text"},
-        		        { type: "text" },
-                        { type: "text" },
-        				null,
-        				null,
-                        null
-			           ]
-        });*/
-       /* new FixedHeader( Table );*/
-       /* $("#listBooks").dataTable().columnFilter();*/
-       
+        });    
         // Apply the search
         table.columns().eq( 0 ).each( function ( colIdx ) {
             $( "input", table.column( colIdx ).header()).on( 'keyup', function () {
@@ -100,5 +91,13 @@
                     .draw();
             } );
         } );
+        $(".export").on('click', function (event) {
+    	var sSearch_0 = document.getElementById("searchTitle").value;
+    	var sSearch_1 = document.getElementById("searchAuthor").value;
+    	var sSearch_2 = document.getElementById("searchGenre").value;
+		    $.post('books/export',{title:sSearch_0,author:sSearch_1,genre:sSearch_2}, function(data){
+		       location.href = data;
+		    });
+		});
     });
 </script>
